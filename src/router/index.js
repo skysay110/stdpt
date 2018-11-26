@@ -1,12 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import PageTransition from '../components/common/PageTransition'
-import Index from '../components/index/Index'
-import Register from '../components/login/Register'
-import Login from '../components/login/Login'
-import Mine from '../components/mine/Mine'
-import ProductList from '../components/product/ProductList'
-import ProductDetail from '../components/product/ProductDetail'
 
 Vue.use(Router);
 
@@ -20,12 +13,12 @@ export default new Router({
 		{
 			path: '/',
 			name: 'PageTransition',
-			component: PageTransition,
+			component: () => import('_c/common/PageTransition'),
 			children: [
 				{
 					path: '/index',
 					name: 'index',
-					component: Index,
+					component: () => import('_c/index/Index'),
 					meta: {
 						title: '发布需求',
 						type: 'HomePage',
@@ -34,7 +27,7 @@ export default new Router({
 				{
 					path: '/register',
 					name: 'register',
-					component: Register,
+					component: () => import('_c/login/Register'),
 					meta: {
 						keepAlive: true,
 						title: '注册'
@@ -43,7 +36,7 @@ export default new Router({
 				{
 					path: '/login',
 					name: 'Login',
-					component: Login,
+					component: () => import('_c/login/Login'),
 					meta: {
 						title: '登录'
 					}
@@ -51,7 +44,7 @@ export default new Router({
 				{
 					path: '/mine',
 					name: 'Mine',
-					component: Mine,
+					component: () => import('_c/mine/Mine'),
 					meta: {
 						title: '我的',
 						type: 'HomePage',
@@ -61,7 +54,7 @@ export default new Router({
 					path: '/ProductList',
 					name: 'ProductList',
 					alias: '/',
-					component: ProductList,
+					component: () => import('_c/product/ProductList'),
 					meta: {
 						title: '产品',
 						type: 'HomePage',
@@ -70,7 +63,7 @@ export default new Router({
 				{
 					path: '/productDetail',
 					name: 'productDetail',
-					component: ProductDetail,
+					component: () => import('_c/product/ProductDetail'),
 					meta: {
 						title: '产品详情',
 					}
